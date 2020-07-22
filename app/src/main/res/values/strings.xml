@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Liga Da Justica</string>
+
+    <string name="welcome">Bem Vindo</string>
+    <string name="mensagem">Este aplicativo tem como objetivo o gerenciamento de heróis, vilões e equipamentos da Liga da Justiça.</string>
+    <string name="mensagem2">Utilize as abas inferiores para navegar entre heóis, vilões e equipamentos.
+        Cadastre-os e, posteriormente, consulte os dados registrados.
+        Lembrando que para associar um equipamento a um determinado personagem, este deve ser previamente cadastrado.</string>
+
+    <string name="tvCad">Cadastro de Heróis</string>
+    <string name="nomeCad">Nome</string>
+    <string name="codnomeCad">Codinome</string>
+    <string name="especieCad">Espécie</string>
+    <string name="habCad">Habilidades</string>
+    <string name="vulnCad">Vulnerabilidades</string>
+    <string name="equipEscolha">Equipamentos</string>
+    <string name="cad">Cadastrar</string>
+    <string name="tvEquip">Cadastro de equipamentos</string>
+    <string name="descrEquip">Descrição</string>
+    <string name="finalidadeEqui">Finalidade</string>
+    <string name="tvCadVil">Cadastro de Vilões</string>
+    <string name="tvEscond">Esconderijos</string>
+    <string name="recyclerDescr">Descrição:</string>
+    <string name="recyclerFinalidade">Finalidade:</string>
+    <string name="ConsDel">Consulte e/ou delete</string>
+    <string name="equipInfo">Equipamentos:</string>
+    <string name="tvNivelAcesso">Nível de acesso</string>
+
+</resources>

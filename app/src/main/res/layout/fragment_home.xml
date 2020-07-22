@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/liga"
+    tools:context=".fragments.HomeFragment">
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/imageViewFundo"
+        android:layout_width="@dimen/largFundo"
+        android:layout_height="@dimen/altFundo"
+        android:scaleType="fitCenter"
+        android:src="@drawable/fundo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:riv_border_color="#FFFFFF"
+        app:riv_border_width="2dip"
+        app:riv_corner_radius="30dp"
+        app:riv_mutate_background="true"
+        app:riv_oval="false"
+        app:riv_tile_mode="repeat" />
+
+    <TextView
+        android:id="@+id/textViewBemVindo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/welcome"
+        android:textSize="@dimen/letraBemVindo"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewFundo"
+        app:layout_constraintStart_toStartOf="@+id/imageViewFundo"
+        app:layout_constraintTop_toTopOf="@+id/imageViewFundo" />
+
+    <TextView
+        android:id="@+id/textViewMsg1"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:text="@string/mensagem"
+        android:textSize="@dimen/letraMsg"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewFundo"
+        app:layout_constraintStart_toStartOf="@+id/imageViewFundo"
+        app:layout_constraintTop_toBottomOf="@+id/textViewBemVindo" />
+
+    <TextView
+        android:id="@+id/textViewMsg2"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="@string/mensagem2"
+        android:textSize="@dimen/letraMsg"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewFundo"
+        app:layout_constraintStart_toStartOf="@+id/imageViewFundo"
+        app:layout_constraintTop_toBottomOf="@+id/textViewMsg1" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
