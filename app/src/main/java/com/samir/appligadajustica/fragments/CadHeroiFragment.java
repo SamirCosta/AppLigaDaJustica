@@ -2,8 +2,10 @@ package com.samir.appligadajustica.fragments;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,6 +28,9 @@ import com.samir.appligadajustica.classes.Personagens;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import static com.samir.appligadajustica.classes.Methods.clearFields;
+import static com.samir.appligadajustica.classes.Methods.verify;
 
 public class CadHeroiFragment extends Fragment {
     private RecyclerView recyclerView, recyclerEscolhidos;
@@ -114,6 +119,7 @@ public class CadHeroiFragment extends Fragment {
 
     public void cadastrar(){
         btnCad.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
                 final String strNome = nome.getText().toString();
@@ -125,7 +131,7 @@ public class CadHeroiFragment extends Fragment {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-                if (!strNome.isEmpty() && !strCodnom.isEmpty() && !strEspecie.isEmpty() && !strHabili.isEmpty() && !strVuln.isEmpty() && !strNivelAcess.isEmpty()) {
+                if (!verify(nome,codinome,especie,habili,vul,nivel)) {
 
                     builder.setTitle("Confirmar cadastro");
                     builder.setMessage("Tem certeza que deseja cadastrar este equipamento?");
@@ -144,7 +150,8 @@ public class CadHeroiFragment extends Fragment {
                             pers.setEquipamentos(equip2);
                             ConsHeroiFragment.personagens.add(pers);
                             ConsHeroiFragment.recyclerViewCons.getAdapter().notifyDataSetChanged();
-                            clear();
+                            clearFields(nome,codinome,especie,habili,vul,nivel);
+                            clearRecycler();
                         }
                     }).setNegativeButton("Não", new DialogInterface.OnClickListener() {
                         @Override
@@ -166,17 +173,11 @@ public class CadHeroiFragment extends Fragment {
         });
     }
 
-    private void clear() {
-
-        nome.setText("");
-        codinome.setText("");
-        especie.setText("");
-        habili.setText("");
-        vul.setText("");
-        nivel.setText("");
-        equipEscolhidos.clear();
-        recyclerEscolhidos.getAdapter().notifyDataSetChanged();
-
+    private void clearRecycler() {
+        if (equipEscolhidos.size() > 0) {
+            equipEscolhidos.clear();
+            recyclerEscolhidos.getAdapter().notifyDataSetChanged();
+        }
     }
 
 }

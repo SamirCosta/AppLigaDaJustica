@@ -1,8 +1,10 @@
 package com.samir.appligadajustica.fragments;
 
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
@@ -19,6 +21,9 @@ import com.google.android.material.snackbar.Snackbar;
 import com.samir.appligadajustica.R;
 import com.samir.appligadajustica.activities.MainActivity;
 import com.samir.appligadajustica.classes.Equipamentos;
+
+import static com.samir.appligadajustica.classes.Methods.clearFields;
+import static com.samir.appligadajustica.classes.Methods.verify;
 
 
 public class CadEquipFragment extends Fragment {
@@ -46,6 +51,7 @@ public class CadEquipFragment extends Fragment {
         btnCad = view.findViewById(R.id.buttonCadEquip);
         bat.setVisibility(View.INVISIBLE);
         btnCad.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
                 final String strNome = nome.getText().toString();
@@ -53,7 +59,7 @@ public class CadEquipFragment extends Fragment {
                 final String strFinal = finalidade.getText().toString();
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-                if (!strNome.isEmpty() && !strDescr.isEmpty() && !strFinal.isEmpty()) {
+                if (!verify(nome,descricao,finalidade)) {
 
                     builder.setTitle("Confirmar cadastro");
                     builder.setMessage("Tem certeza que deseja cadastrar este equipamento?");
@@ -68,7 +74,7 @@ public class CadEquipFragment extends Fragment {
                             ConsEquipFragment.recyclerView.getAdapter().notifyDataSetChanged();
                             Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.batman_logo);
                             bat.startAnimation(animation);
-                            clear();
+                            clearFields(nome,descricao,finalidade);
                         }
                     }).setNegativeButton("Não", new DialogInterface.OnClickListener() {
                         @Override
@@ -92,11 +98,4 @@ public class CadEquipFragment extends Fragment {
         return view;
     }
 
-    private void clear() {
-
-        nome.setText("");
-        descricao.setText("");
-        finalidade.setText("");
-
-    }
 }

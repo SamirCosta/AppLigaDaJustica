@@ -3,9 +3,12 @@ package com.samir.appligadajustica.classes;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Build;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,8 +19,20 @@ import com.samir.appligadajustica.adapter.AdapterConsVil;
 import com.samir.appligadajustica.adapter.AdapterEquip;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 
 public class Methods {
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static boolean verify(EditText... editTexts){
+        return Arrays.stream(editTexts).anyMatch(e -> e.getText().toString().isEmpty());
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static void clearFields(EditText... editTexts){
+        Arrays.asList(editTexts).forEach(e -> e.setText(""));
+    }
 
     public static void configRecycler(RecyclerView recycler, ArrayList arrayList, Context context, byte adapter){
 

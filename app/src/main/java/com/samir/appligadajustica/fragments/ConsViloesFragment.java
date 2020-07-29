@@ -3,6 +3,8 @@ package com.samir.appligadajustica.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,6 +16,8 @@ import android.widget.AdapterView;
 import com.samir.appligadajustica.R;
 import com.samir.appligadajustica.RecyclerItemClickListener;
 import com.samir.appligadajustica.activities.InfoActivity;
+import com.samir.appligadajustica.adapter.AdapterCons;
+import com.samir.appligadajustica.adapter.AdapterConsVil;
 import com.samir.appligadajustica.classes.Methods;
 import com.samir.appligadajustica.classes.Personagens;
 import com.samir.appligadajustica.classes.Viloes;
@@ -48,7 +52,8 @@ public class ConsViloesFragment extends Fragment {
                         Intent intent = new Intent(getActivity(), InfoActivity.class);
                         intent.putExtra("posVila", position);
                         intent.putExtra("personagens", 2);
-                        startActivity(intent);
+                        ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), AdapterConsVil.MyViewHolderVil.tvNomeVil, ViewCompat.getTransitionName(AdapterConsVil.MyViewHolderVil.tvNomeVil));
+                        startActivity(intent, optionsCompat.toBundle());
                     }
 
                     @Override

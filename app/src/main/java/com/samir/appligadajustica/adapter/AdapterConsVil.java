@@ -15,7 +15,7 @@ import com.samir.appligadajustica.classes.Viloes;
 
 import java.util.ArrayList;
 
-public class AdapterConsVil extends RecyclerView.Adapter<AdapterConsVil.MyViewHolder> {
+public class AdapterConsVil extends RecyclerView.Adapter<AdapterConsVil.MyViewHolderVil> {
     ArrayList<Viloes> viloesArrayList;
     Context context;
 
@@ -26,15 +26,15 @@ public class AdapterConsVil extends RecyclerView.Adapter<AdapterConsVil.MyViewHo
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MyViewHolderVil onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View item = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_consulta, parent,false);
-        return new AdapterConsVil.MyViewHolder(item);
+        return new AdapterConsVil.MyViewHolderVil(item);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolderVil holder, int position) {
         Viloes viloes = viloesArrayList.get(position);
-        holder.tvNome.setText(viloes.getNome());
+        holder.tvNomeVil.setText(viloes.getNome());
         holder.tvCodnom.setText(viloes.getCodinome());
     }
 
@@ -43,12 +43,12 @@ public class AdapterConsVil extends RecyclerView.Adapter<AdapterConsVil.MyViewHo
         return viloesArrayList.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView tvNome, tvCodnom;
+    public static class MyViewHolderVil extends RecyclerView.ViewHolder{
+        public static TextView tvNomeVil, tvCodnom;
 
-        public MyViewHolder(@NonNull View itemView) {
+        public MyViewHolderVil(@NonNull View itemView) {
             super(itemView);
-            tvNome = itemView.findViewById(R.id.tvNomePers);
+            tvNomeVil = itemView.findViewById(R.id.tvNomePers);
             tvCodnom = itemView.findViewById(R.id.tvCodnomPers);
 
         }

@@ -3,6 +3,8 @@ package com.samir.appligadajustica.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -52,7 +54,8 @@ public class ConsHeroiFragment extends Fragment {
                         Intent intent = new Intent(getActivity(), InfoActivity.class);
                         intent.putExtra("posicao", position);
                         intent.putExtra("personagens", 1);
-                        startActivity(intent);
+                        ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), AdapterCons.MyViewHolder.tvNome, ViewCompat.getTransitionName(AdapterCons.MyViewHolder.tvNome));
+                        startActivity(intent, optionsCompat.toBundle());
                     }
 
                     @Override

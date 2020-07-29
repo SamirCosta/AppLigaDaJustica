@@ -2,9 +2,11 @@ package com.samir.appligadajustica.fragments;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,6 +30,9 @@ import com.samir.appligadajustica.classes.Viloes;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+
+import static com.samir.appligadajustica.classes.Methods.clearFields;
+import static com.samir.appligadajustica.classes.Methods.verify;
 
 public class CadViloesFragment extends Fragment {
     private EditText nome, codinome, especie, habili, vul, heroiRival, esconderijo, editText;
@@ -149,6 +154,7 @@ public class CadViloesFragment extends Fragment {
 
     public void cadastrar(){
         btnCadVilao.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
                 final String strNome = nome.getText().toString();
@@ -161,7 +167,7 @@ public class CadViloesFragment extends Fragment {
                 final String strData = editText.getText().toString();
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-                if (!strNome.isEmpty() && !strCodnom.isEmpty() && !strEspecie.isEmpty() && !strHabili.isEmpty() && !strVuln.isEmpty() && !strHeroiRival.isEmpty() && !strEsconderijo.isEmpty() && !strData.isEmpty())
+                if (!verify(nome,codinome,especie,habili,vul,heroiRival,esconderijo,editText))
                 {
 
                     builder.setTitle("Confirmar cadastro");
@@ -184,7 +190,8 @@ public class CadViloesFragment extends Fragment {
                                 viloes.setEquipamentos(equip2);
                                 ConsViloesFragment.viloes.add(viloes);
                                 ConsViloesFragment.recyclerViewConsVilao.getAdapter().notifyDataSetChanged();
-                                clear();
+                                clearFields(nome,codinome,especie,habili,vul,heroiRival,esconderijo,editText);
+                                clearRecycler();
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
@@ -209,19 +216,11 @@ public class CadViloesFragment extends Fragment {
         });
     }
 
-    private void clear() {
-
-        nome.setText("");
-        codinome.setText("");
-        especie.setText("");
-        habili.setText("");
-        vul.setText("");
-        heroiRival.setText("");
-        esconderijo.setText("");
-        editText.setText("");
-        equipEscolhidos.clear();
-        recyclerEscolhidos.getAdapter().notifyDataSetChanged();
-
+    private void clearRecycler() {
+        if (equipEscolhidos.size() > 0) {
+            equipEscolhidos.clear();
+            recyclerEscolhidos.getAdapter().notifyDataSetChanged();
+        }
     }
 
 }

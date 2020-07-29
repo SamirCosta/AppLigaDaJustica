@@ -46,8 +46,8 @@ public class AdapterCons extends RecyclerView.Adapter<AdapterCons.MyViewHolder> 
         return personagensArrayList.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView tvNome, tvCodnom;
+    public static class MyViewHolder extends RecyclerView.ViewHolder{
+        public static TextView tvNome, tvCodnom;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
